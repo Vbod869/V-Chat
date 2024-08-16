@@ -47,7 +47,7 @@ window.addEventListener('storage', (event) => {
     }
 });
 
-// Simulate receiving admin messages every second
+// Simulate receiving admin messages
 setInterval(() => {
     const adminMessage = localStorage.getItem('adminMessage');
     if (adminMessage) {
