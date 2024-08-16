@@ -10,6 +10,8 @@ sendButton.addEventListener('click', () => {
         messageInput.value = '';
         // Simulate sending message to user
         localStorage.setItem('adminMessage', message);
+        // Clear previous user message
+        localStorage.removeItem('userMessage');
     }
 });
 
@@ -29,7 +31,7 @@ function addMessage(sender, message) {
     chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
 }
 
-// Simulate receiving user messages by polling localStorage every second
+// Simulate receiving user messages
 setInterval(() => {
     const userMessage = localStorage.getItem('userMessage');
     if (userMessage) {
@@ -38,7 +40,7 @@ setInterval(() => {
     }
 }, 1000);
 
-// Listen for changes in localStorage to update chat across devices/tabs
+// Listen for changes in localStorage to update chat across devices
 window.addEventListener('storage', (event) => {
     if (event.key === 'adminMessage' || event.key === 'userMessage') {
         const storedMessage = event.newValue;
