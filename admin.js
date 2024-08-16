@@ -43,9 +43,9 @@ setInterval(() => {
 // Listen for changes in localStorage to update chat across devices
 window.addEventListener('storage', (event) => {
     if (event.key === 'adminMessage' || event.key === 'userMessage') {
-        const storedMessage = event.newValue;
+        const storedMessage = JSON.parse(event.newValue);
         if (storedMessage) {
-            addMessage(event.key === 'adminMessage' ? 'Admin' : 'User', storedMessage);
+            addMessage(storedMessage.sender, storedMessage.message);
         }
     }
 });
