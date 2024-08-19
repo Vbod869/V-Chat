@@ -4,22 +4,174 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Chat</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e5ddd5; /* WhatsApp-like background color */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#chat-container {
+    width: 100%;
+    max-width: 360px; /* Reduced max-width */
+    background-color: #fff;
+    border-radius: 15px; /* Slightly rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#chat-box {
+    padding: 15px; /* Reduced padding */
+    height: 280px; /* Reduced height */
+    overflow-y: auto;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+}
+
+#message-input-container {
+    display: flex;
+    padding: 8px; /* Reduced padding */
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+}
+
+#message-input {
+    flex-grow: 1;
+    padding: 8px; /* Reduced padding */
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 14px; /* Smaller font size */
+    outline: none;
+    background-color: #f0f0f0;
+}
+
+#send-button {
+    padding: 8px 12px; /* Reduced padding */
+    margin-left: 8px; /* Reduced margin */
+    border: none;
+    background-color: #25d366; /* WhatsApp-like color */
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px; /* Smaller font size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+#send-button:hover {
+    background-color: #128c7e; /* Darker shade for hover */
+}
+
+#question-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 8px; /* Reduced padding */
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+}
+
+.question-button {
+    padding: 8px 12px; /* Reduced padding */
+    margin: 4px; /* Reduced margin */
+    background-color: #25d366; /* WhatsApp-like color */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px; /* Smaller font size */
+    transition: background-color 0.3s ease;
+}
+
+.question-button:hover {
+    background-color: #128c7e; /* Darker shade for hover */
+}
+
+/* Chat Bubble Styles */
+.message {
+    margin: 8px 0; /* Reduced margin */
+    padding: 8px; /* Reduced padding */
+    border-radius: 15px; /* Slightly rounded corners */
+    max-width: 70%; /* Reduced max-width */
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+}
+
+.message.user {
+    background-color: #dcf8c6; /* WhatsApp-like color for user messages */
+    color: #000;
+    align-self: flex-end;
+}
+
+.message.bot {
+    background-color: #fff;
+    color: #000;
+    align-self: flex-start;
+    border: 1px solid #ddd;
+}
+
+/* Typing Indicator Styling */
+#typing-indicator {
+    display: none;
+    align-self: flex-start;
+    padding: 8px; /* Reduced padding */
+    margin-bottom: 8px; /* Reduced margin */
+    background-color: #fff;
+    border-radius: 15px; /* Slightly rounded corners */
+    color: #888;
+    font-size: 12px; /* Smaller font size */
+    border: 1px solid #ddd;
+}
+
+#typing-indicator .typing-dots {
+    font-size: 16px; /* Smaller font size */
+    letter-spacing: 2px; /* Reduced letter spacing */
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+    </style>
 </head>
 <body>
     <div id="chat-container">
         <div id="chat-box">
-            <p>1</p>
+            <!-- Chat messages will appear here -->
         </div>
+
+        <div id="typing-indicator">
+            <span class="typing-dots">• • • •</span> Bot is typing...
+        </div>
+
+        <div id="question-buttons-container"></div> <!-- New container for question buttons -->
         <div id="message-input-container">
             <input type="text" id="message-input" placeholder="Type a message..." />
             <button id="send-button">➤</button>
         </div>
     </div>
-    <script src="chat.js"></script>
-    <script>
-        // Identifikasi sebagai user
-        initChat('user');
-    </script>
+    <script src="admin.js"></script>
 </body>
 </html>

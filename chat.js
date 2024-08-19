@@ -128,3 +128,46 @@ function formatTime(timeString) {
     const time = new Date(timeString);
     return time.toLocaleTimeString([], options);
 }
+
+const predefinedQuestions = {
+    "What is your name?": "I am a chatbot.",
+    "What services do you offer?": "I can assist with general inquiries.",
+    "How can I contact support?": "You can reach support via email or phone.",
+    "What are your working hours?": "Our working hours are from 9 AM to 5 PM."
+};
+
+function appendMessage(sender, message) {
+    const messageElement = document.createElement('p');
+    messageElement.textContent = `${sender}: ${message}`;
+    chatBox.appendChild(messageElement);
+}
+
+function initChat(userType) {
+    appendMessage("Bot", "Hello! How can I help you today?");
+    
+    sendButton.addEventListener('click', () => {
+        const userMessage = messageInput.value;
+        if (userMessage.trim() === "") return;
+        
+        appendMessage("You", userMessage);
+        messageInput.value = '';
+
+        const botResponse = predefinedQuestions[userMessage];
+        
+        if (botResponse) {
+            appendMessage("Bot", botResponse);
+        } else {
+            appendMessage("Bot", "I'm sorry, I don't understand. Would you like to chat with an admin? (Type 'Yes' or 'No')");
+        }
+
+        if (userMessage.toLowerCase() === "yes") {
+            appendMessage("Bot", "Connecting you to an admin...");
+            // Here you would handle connecting to an admin, possibly by sending an alert or message to the admin.
+        } else if (userMessage.toLowerCase() === "no") {
+            appendMessage("Bot", "Okay, feel free to ask me anything else.");
+        }
+    });
+}
+
+initChat('user');
+
