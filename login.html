@@ -82,7 +82,7 @@
 <body>
     <div class="login-container">
         <div class="title">Login to BKonsul</div>
-        <form action="{{ route('login') }}" method="POST">
+        <form id="login-form" action="{{ route('login') }}" method="POST">
             @csrf
             <div class="input-group">
                 <label for="email"><i class="fas fa-envelope"></i> Email</label>
@@ -96,5 +96,21 @@
         </form>
         <a href="{{ route('password.request') }}" class="forgot-password">Forgot your password?</a>
     </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            // Simulate a successful login
+            // You should replace this with actual authentication logic
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (email && password) { // Basic check for demo purposes
+                // Redirect to user.html upon successful login
+                window.location.href = 'user.html';
+            }
+        });
+    </script>
 </body>
 </html>
